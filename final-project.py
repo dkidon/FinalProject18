@@ -19,6 +19,12 @@ while True:
         print("Sorry, that's not a possible choice. Pick again!")
     else:
         print(f"You chose {first_room_door_choice}.")
-if first_room_door_choice = "left":
-    print("You chose the left door.")
-
+        break
+if first_room_door_choice == "left":
+    print("You walk to the door and open it to see a long, dark corridor.")
+    print("Are you sure you want to take this path?")
+    left_door_exit = input("Yes/No")
+    if left_door_exit == "No":
+        print("Okay.")
+    elif left_door_exit == "Yes":
+        print("Okay.")
