@@ -28,10 +28,10 @@ while room_1:
     while first_room_door_choice.lower() not in first_room_door:
         first_room_door_choice = input("Will you go left, right, or forward?")
 
-    if first_room_door_choice == 'left':
+    if first_room_door_choice.lower() in ['left','l']:
         room_1_left = True
         left_corridor = True
-    if first_room_door_choice == 'right':
+    if first_room_door_choice.lower() in ['right','r']:
         room_1_right = True
     print(f"You chose {first_room_door_choice}.")
     room_1 = False
