@@ -10,11 +10,16 @@ bear_runner = ''
 field_choice = ''
 alien_choice = ''
 forward = ''
+alien_kill = ''
+alien_ship = ''
+kill_bear = ''
 room_1 = True
 room_1_left = False
 left_corridor = False
 room_1_right = False
 bear_choice = False
+field_choice = False
+
 
 def intro():
     print("Welcome traveler!")
@@ -38,6 +43,7 @@ while room_1:
         left_corridor = True
     if first_room_door_choice.lower() in ['right','r']:
         room_1_right = True
+
     print(f"You chose {first_room_door_choice}.")
     room_1 = False
 
@@ -52,6 +58,8 @@ while room_1_left:
     if left_door_exit.lower() in ['no','nope','n']:
         print("Choose again!")
         first_room_door_choice = input("Will you go left, right, or forward?")
+        room_1_left = False
+        room_1 = True
     elif left_door_exit.lower() in ['yes', 'y' , 'yup']:
         print("You start walking down the dark corridor.")
         print("You feel your foot hit something.")
@@ -75,8 +83,8 @@ while left_corridor:
     elif candy.lower() in ['no','nope','n']:
         print('You walk away from the candy.')
         print('All of a sudden, you see a bear!')
-        bear_choice = input('Will you run or try to get by the bear?')
-    if bear_choice.lower() in ['get by','by']:
+        bear_choice = input('Will you run or try to get by the bear?').lower()
+    if bear_choice in ['get by','by']:
         print("Come on player!")
         print("The bear heard you from a mile away and woke up.")
         print("Game over!")
@@ -93,6 +101,16 @@ while left_corridor:
     if bear_runner.lower() in ['fight','f','battle']:
         print("Right as you start slowing down, you turn around and wack the bear in the nose with your flashlight.")
         print("The bear faints.")
+        kill_bear = input("Will you kill the bear, or be merciful and spare him?").lower()
+    if kill_bear in ['kill the bear','kill']:
+        print("You finish the bear off with your flashlight, but as you do so the flashlight snaps in half!")
+        print("Since you have no light, you get hopelessly lost and starve.")
+        print("Game Over!")
+        left_corridor = False
+    if kill_bear in ['merciful','mercy','spare','spare him']:
+        print("As the bear comes to, he looks up at you with respect.")
+        print("He starts to walk away from you, and looks back at you, as if for you to follow.")
+        follow_bear = input("Will you follow the bear?")
 
 
     elif dark_choice.lower() in ['no','n','n']:
@@ -109,14 +127,14 @@ while room_1_right:
     if right_door_exit.lower() in ['no','nope', 'n']:
         print("Choose again!")
         first_room_door_choice = input("Will you go left, right, or forward?")
-    elif right_door_exit.lower() in ['yes','y','yup']:
+    if right_door_exit.lower() in ['yes','y','yup']:
         print("You walk into the large field and look around.")
         print("To the north you see mountains, and to the south you see a forest.")
-        field_choice = input("Will you go north or south?")
-    if field_choice.lower() in ['north','n']:
+        field_choice = input("Will you go north or south?").lower()
+    if field_choice in ['north','n']:
         print("You start to head to the mountains.")
         print("All of a sudden, a huge meteor crashes right in front of you!")
-        alien_choice = input("Do you want to run or stay and meet them?")
+        alien_choice = input("Do you want to run away or stay?")
     if alien_choice.lower() in ['run','run away','r']:
         print("While running away, another meteor completely crushes you.")
         print("Game Over!")
@@ -130,6 +148,27 @@ while room_1_right:
         print("He pulls out his blaster and shoots you in the back!")
         time.sleep(1)
         print("Game Over!")
+        room_1_right = False
+    if forward.lower() in ['go forward','go','forward']:
+        print("The alien welcomes you with open arms.")
+        print("He shows you around his ship and ends up giving you his blaster.")
+        alien_kill = input("Will you be ruthless and kill the alien, or be friendly and shake his hand?").lower()
+    if alien_kill in ['shake','shake his hand','be friendly','friendly']:
+        print("The alien takes your hand and rips it off!")
+        print("He shoots you in the chest and bites your head off.")
+        print("Game Over!")
+        room_1_right = False
+    if alien_kill in ['be ruthless','kill','ruthless','kill the alien']:
+        print("Good job!")
+        print("The alien was going to take over the world.")
+        print("Congratulations for defeating him.")
+        alien_ship = input("Do you want to take the ship for a ride, or do you want to step outside?").lower()
+    if alien_ship in ['take the ship for a ride','ride','take the ship','fly']:
+        print("The meteorite is actually a spaceship.")
+        print("You step to the control panel and slowly start to figure out how to fly the ship.")
+        print("You fly off into deep space, leaving Earth behind to continue your adventure.")
+        print("Congratulations! You finished one path of this game!")
+        print("Play again to discover the other paths!")
         room_1_right = False
 
 
