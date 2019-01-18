@@ -36,12 +36,29 @@ class Story():
     def create_char(self):
         name = input("Please enter a name for your character: ")
         self.pc = Character(name)
+    def dead(self):
+        print("You are dead.")
+        answer = check_answer("Do you want to start again?", ["yes" , "no"])
+
+        if answer = "yes":
+            self.new_game()
+        else:
+            print("Game Over!")
+
     def outside(self):
         print("You are a slave. Your master has brought you to the dark cave.")
         print("Many people have died here before.")
         print("You master commands that you enter the cave to collect the Evil book of spells.")
 
-        self.check_answer("Do you enter the cave?", ["yes" , "no"])
+        answer = self.check_answer("Do you enter the cave?", ["yes" , "no"])
+
+        if answer == 'yes':
+            self.cave()
+        else:
+            print("When you say no, your master draws his sword and kills you.")
+            self.dead()
+    def cave(self):
+        print("You enter the cave.")
 
 
 new_game = Story()
