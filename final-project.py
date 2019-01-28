@@ -123,6 +123,7 @@ class Story():
             self.cm.check_attack(self.pc, skel)
             if self.pc.is_dead():
                 print("The skeleton wins the fight! You are dead.")
+                print("Game Over!")
                 self.dead()
             else:
                 self.chest()
@@ -131,7 +132,6 @@ class Story():
             print("You attempt to sneak to the chest.")
             if self.pc.sneak():
                 print("You managed to sneak to the chest")
-                print("You obtained the Evil Spell Book.")
                 self.chest()
 
             else:
@@ -178,8 +178,8 @@ class Story():
         kill_bear = ''
         follow_bear = ''
         bow = ''
-        stick = ''
         deer = ''
+        forward_wait = ''
         room_1 = True
         room_1_left = False
         left_corridor = False
@@ -292,6 +292,24 @@ class Story():
                     print("You come up to a clearing and see a deer.")
                     print("Do you want to try to shoot it?")
                     deer = input("Yes/No").lower()
+                if deer in ['yes','y','yeah']:
+                    print("As you shoot, the deer is suddenly pulled away by some invisible force.")
+                    print("You stop in confusion and the force turns onto you.")
+                    print("Game Over!")
+                    room_1_right = False
+                if deer in ['no','nah','n']:
+                    print("The deer is suddenly pulled away by some invisible force.")
+                    forward_wait = input("Do you want to continue forward or wait.")
+                if forward_wait in ['wait','w']:
+                    print("You wait too long and the force catches onto you.")
+                    print("You get ripped apart by the force.")
+                    print("Game Over!")
+                    room_1_right = False
+                if forward_wait in ['go forward','continue','continue forward','go','forward']:
+                    print("You run past the force and manage to get out of the woods.")
+                    print("Congratulations you escaped your evil master.")
+                    print("PLay again to discover the other paths.")
+                    room_1_right = False
                 if bow in ['no','nah','n']:
                     print("You walk past the bow and continue into the forest.")
                     print("You hear a cool breeze behind you and see your worst fear in the world.")
